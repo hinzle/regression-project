@@ -4,15 +4,6 @@ def plot_variable_pairs(df):
 	sns.pairplot(df.sample(100), kind='reg', diag_kind='hist', palette='icefire', plot_kws={'line_kws':{'color':'red'}})
 	return plt.show()
 
-def months_to_years(df):
-	months=df.tenure%12
-	years=df.tenure/12
-	years=years.astype('str')
-	years=years.str.split('.',expand=True)[0]
-	years.head()
-	df['years']=years
-	df['months']=months
-	return df
 
 def plot_categorical_and_continuous_vars(
     df: pd.core.frame.DataFrame,
