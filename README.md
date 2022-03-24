@@ -1,4 +1,11 @@
 ## codeup/data-science/innis/regression:
-### acquisition and prep:
+### project:
 - wrangle.ipynb
 - wrangle.py
+- explore.ipynb
+- explore.py
+- evaluate.ipynb
+- model.ipynb
+- model.py
+- report.pynb
+

@@ -4,21 +4,23 @@ def wrangle_zillow(use_cache=True):
     '''
     Acquires and prepares zillow 2017 property data for exploration and modeling.
     '''
-    if os.path.exists('zillow.csv') and use_cache:
+    if os.path.exists('/Users/hinzlehome/codeup-data-science/regression-project/csvs/zillow_db.csv') and use_cache:
         print('Using cached csv')
-        return pd.read_csv('zillow.csv')
-
-    print('Acquiring data from SQL database')
-    df=pd.read_sql(
-        '''
-        SELECT *
-        FROM properties_2017
-        LEFT JOIN propertylandusetype USING (propertylandusetypeid)
-        ''',
-            # LEFT JOIN contract_types USING (contract_type_id)
-            # LEFT JOIN payment_types USING (payment_type_id)
-            # ''',
-        get_db_url('zillow'))     
+        df=pd.read_csv('/Users/hinzlehome/codeup-data-science/regression-project/csvs/zillow_db.csv')
+    
+    else:
+        print('Acquiring data from SQL database')
+        df=pd.read_sql(
+            '''
+            SELECT *
+            FROM properties_2017
+            LEFT JOIN propertylandusetype USING (propertylandusetypeid)
+            ''',
+                # LEFT JOIN contract_types USING (contract_type_id)
+                # LEFT JOIN payment_types USING (payment_type_id)
+                # ''',
+            get_db_url('zillow'))
+        df.to_csv('/Users/hinzlehome/codeup-data-science/regression-project/csvs/zillow_db.csv', index=False)
     cols=['bedroomcnt','bathroomcnt', 'calculatedfinishedsquarefeet', 'taxvaluedollarcnt', 'yearbuilt', 'taxamount', 'fips', 'propertylandusedesc']
     df=df[cols]
     df=df[df.propertylandusedesc=='Single Family Residential']
@@ -36,11 +38,11 @@ def wrangle_zillow(use_cache=True):
         'taxvaluedollarcnt':'property_value',
         'taxamount':'taxes'
         },axis=1)
-    df.beds=df.beds.astype('Int64')
-    df.baths=df.baths.astype('Int64')
+    # df.beds=df.beds.astype('Int64')
+    # df.baths=df.baths.astype('Int64')
     df.year=df.year.astype('Int64')
     df.fips=df.fips.astype('Int64')
-    df.to_csv('zillow.csv', index=False)
+    df.to_csv('/Users/hinzlehome/codeup-data-science/regression-project/csvs/pre_split_zillow.csv', index=False)
 
     '''
     takes in a dataframe and a target name, outputs three dataframes: 'train', 'validate', 'test', each stratified on the named target. 
