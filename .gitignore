@@ -1,6 +1,7 @@
 # hidden files
 .DS_Store
 untidy-data
+csvs
 
 # files
 env.py

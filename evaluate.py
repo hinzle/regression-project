@@ -1,5 +1,18 @@
 from imports import *
 
+def ml_data(train, validate, test, target=list):
+	'''
+	->: train, validate, test 
+	<-: X_train, y_train, X_validate, y_validate, X_test, y_test
+	'''
+	X_train = train.drop(columns=target)
+	y_train = train[target]
+	X_validate = validate.drop(columns=target)
+	y_validate = validate[target]
+	X_test = test.drop(columns=target)
+	y_test = test[target]
+	return [X_train, y_train, X_validate, y_validate, X_test, y_test]
+
 def residuals(actual, predicted):
     '''
     ∆(y,yhat)
