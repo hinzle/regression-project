@@ -9,12 +9,14 @@ import pandas as pd
 from scipy import stats
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import confusion_matrix,accuracy_score,precision_score,recall_score,classification_report,mean_squared_error, r2_score, explained_variance_score
+from sklearn.metrics import (confusion_matrix, accuracy_score, precision_score,
+recall_score, classification_report, mean_squared_error, r2_score, explained_variance_score,
+)
 from sklearn.tree import DecisionTreeClassifier, plot_tree, export_text
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression, LinearRegression
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, QuantileTransformer
+from sklearn.linear_model import LogisticRegression, LinearRegression, LassoLars, TweedieRegressor
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, QuantileTransformer, PolynomialFeatures
 from sklearn.feature_selection import f_regression, SelectKBest, RFE
 
 

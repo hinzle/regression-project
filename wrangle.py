@@ -40,8 +40,8 @@ def wrangle_zillow(use_cache=True):
         },axis=1)
     # df.beds=df.beds.astype('Int64')
     # df.baths=df.baths.astype('Int64')
-    df.year=df.year.astype('Int64')
-    df.fips=df.fips.astype('Int64')
+    df.year=df.year.astype('category')
+    df.fips=df.fips.astype('category')
     df.to_csv('/Users/hinzlehome/codeup-data-science/regression-project/csvs/pre_split_zillow.csv', index=False)
 
     '''
@@ -68,11 +68,13 @@ def wrangle_zillow(use_cache=True):
 
     If return_scaler is true, the scaler object will be returned as well.
     '''
-    columns_to_scale = ['beds', 'baths', 'property_value', 'taxes', 'sqft']
+    columns_to_scale = ['beds', 'baths', 'taxes', 'sqft']
 
     train_scaled = train.copy()
     validate_scaled = validate.copy()
     test_scaled = test.copy()
+
+    # dont scale the target
 
     scaler = MinMaxScaler()
     scaler.fit(train[columns_to_scale])
