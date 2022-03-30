@@ -35,12 +35,24 @@
 
  
 
-## III. INITIAL QUESTIONS:
+## III. Initial Questions:
 
-### Data-Focused Questions
 
-- [x] Why do some properties have a much higher value than others when they are located so close to each other? 
-- [] Does sqaure footage effect property value? 
-- [] Does number of baths effect property value?
-- [] Does number of beds effect property value?
-- [] What is the optimal ratio of beds/baths?
+- Why do some properties have a much higher value than others when they are located so close to each other? 
+- Does sqaure footage effect property value? 
+- Does number of baths effect property value?
+- Does number of beds effect property value?
+- What is the optimal ratio of beds/baths?
+
+
+## IV. Data Dictionary
+
+| Variable | Description |
+|---|---|
+|'beds'| Number of bedrooms in home |
+|'baths'| Number of bathrooms in home including fractional bathrooms|
+|'sqft'| Calculated total finished living area of the home |
+|'fips'| Federal Information Processing Standard code -  see https://en.wikipedia.org/wiki/FIPS_county_code for more details|
+|'year'| The Year the principal residence was built |
+|'taxes'|The total property tax assessed for that assessment year|
+|'property_value'|The total tax assessed value of the parcel|
