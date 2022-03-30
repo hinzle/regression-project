@@ -87,3 +87,51 @@ def better_than_baseline(actual, predicted):
     sse_baseline = sse(actual, actual.mean())
     sse_model = sse(actual, predicted)
     return sse_model < sse_baseline
+
+def evaluate_hypothesis(p: float, alpha: float = 0.05, output: bool = True) -> bool:
+    '''
+    Compare the p value to the established alpha value to determine if the null hypothesis
+    should be rejected or not.
+    '''
+
+    if p < alpha:
+        if output:
+            print('\nReject H_0')
+        return False
+    else: 
+        if output:
+            print('\nFail to Reject H_0')
+        return True
+
+def pearsons_r_p(data_for_category1, data_for_category2, alpha = 0.05):
+    '''
+    Given two subgroups from a dataset, conducts a correlation test for linear relationship and outputs 
+    the relevant information to the console. 
+    Utilizes the method provided in the Codeup curriculum for conducting correlation test using
+    scipy and pandas.
+
+    "  
+    '''
+
+    # conduct test using scipy.stats.peasonr() test
+    r, p = stats.pearsonr(data_for_category1, data_for_category2)
+
+    # output
+    print(f'r = {r:.4f}')
+    print(f'p = {p:.4f}')
+
+    # evaluate the hypothesis against the established alpha value
+    evaluate_hypothesis(p, alpha)
+
+    if r<=0.2:
+        print("no correlation")
+    elif r<=0.5:
+        print("weak correlation")
+    elif r<=0.75:
+        print("moderate correlation")
+    else:
+        print("strong correlation")
+
+    # estimate strength of relation
+
+    return r,p
